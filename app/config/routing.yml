@@ -1,3 +1,8 @@
+minsal_maestros:
+    resource: "@MinsalMaestrosBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 root:
     pattern: /
     defaults:

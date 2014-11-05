@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CtlEstablecimiento" table="ctl_establecimiento">
+    <indexes>
+      <index name="idx_332bd42c7ead49c7" columns="id_municipio"/>
+      <index name="IDX_332BD42C3544B551" columns="id_establecimiento_padre"/>
+      <index name="IDX_332BD42C4E0E50FD" columns="id_tipo_establecimiento"/>
+      <index name="IDX_332BD42C8F14B160" columns="id_cat_tipo_consumo"/>
+      <index name="IDX_332BD42C952E1FD4" columns="id_cat_tipo_farmacia"/>
+      <index name="IDX_332BD42C9E67D4BE" columns="id_cat_tipo_expediente"/>
+      <index name="IDX_332BD42CCC3EE19E" columns="id_cat_pruebas"/>
+      <index name="IDX_332BD42CEF433A34" columns="id_institucion"/>
+      <index name="IDX_332BD42CF92045C1" columns="id_cat_nivel_minsal"/>
+      <index name="IDX_332BD42C735E702C" columns="id_usuario_mod"/>
+      <index name="IDX_332BD42C7C22D51" columns="id_usuario_reg"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="nombre" type="string" column="nombre" length="150" nullable="true"/>
+    <field name="direccion" type="string" column="direccion" length="300" nullable="true"/>
+    <field name="telefono" type="string" column="telefono" length="15" nullable="true"/>
+    <field name="fax" type="string" column="fax" length="15" nullable="true"/>
+    <field name="latitud" type="decimal" column="latitud" precision="10" scale="4" nullable="true"/>
+    <field name="longitud" type="decimal" column="longitud" precision="10" scale="4" nullable="true"/>
+    <field name="anioApertura" type="integer" column="anio_apertura" nullable="true"/>
+    <field name="codestabConsumos" type="string" column="codestab_consumos" length="18" nullable="true"/>
+    <field name="codestabSiaf" type="string" column="codestab_siaf" length="4" nullable="true"/>
+    <field name="codUcsf" type="integer" column="cod_ucsf" nullable="true"/>
+    <field name="instMortalidad" type="integer" column="inst_mortalidad" nullable="true"/>
+    <field name="digitaMortalidad" type="integer" column="digita_mortalidad" nullable="true"/>
+    <field name="cvcd4" type="integer" column="cvcd4" nullable="true"/>
+    <field name="activo" type="boolean" column="activo" nullable="true"/>
+    <field name="fechaHoraReg" type="datetime" column="fecha_hora_reg" nullable="true"/>
+    <field name="fechaHoraMod" type="datetime" column="fecha_hora_mod" nullable="true"/>
+    <field name="idestablesimow" type="integer" column="idestablesimow" nullable="true"/>
+    <field name="idestablevigepes" type="integer" column="idestablevigepes" nullable="true"/>
+    <field name="estadoVigepes" type="integer" column="estado_vigepes" nullable="true"/>
+    <field name="estadoVacunas" type="integer" column="estado_vacunas" nullable="true"/>
+    <field name="estadoSeps" type="integer" column="estado_seps" nullable="true"/>
+    <field name="estadoSimow" type="integer" column="estado_simow" nullable="true"/>
+    <many-to-one field="idInstitucion" target-entity="CtlInstitucion">
+      <join-columns>
+        <join-column name="id_institucion" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idCatNivelMinsal" target-entity="CtlCatalogoDetalle">
+      <join-columns>
+        <join-column name="id_cat_nivel_minsal" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idUsuarioMod" target-entity="FosUserUser">
+      <join-columns>
+        <join-column name="id_usuario_mod" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idUsuarioReg" target-entity="FosUserUser">
+      <join-columns>
+        <join-column name="id_usuario_reg" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idCatPruebas" target-entity="CtlCatalogoDetalle">
+      <join-columns>
+        <join-column name="id_cat_pruebas" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idCatTipoExpediente" target-entity="CtlCatalogoDetalle">
+      <join-columns>
+        <join-column name="id_cat_tipo_expediente" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idTipoEstablecimiento" target-entity="CtlTipoEstablecimiento">
+      <join-columns>
+        <join-column name="id_tipo_establecimiento" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idMunicipio" target-entity="CtlMunicipio">
+      <join-columns>
+        <join-column name="id_municipio" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idCatTipoConsumo" target-entity="CtlCatalogoDetalle">
+      <join-columns>
+        <join-column name="id_cat_tipo_consumo" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idCatTipoFarmacia" target-entity="CtlCatalogoDetalle">
+      <join-columns>
+        <join-column name="id_cat_tipo_farmacia" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idEstablecimientoPadre" target-entity="CtlEstablecimiento">
+      <join-columns>
+        <join-column name="id_establecimiento_padre" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

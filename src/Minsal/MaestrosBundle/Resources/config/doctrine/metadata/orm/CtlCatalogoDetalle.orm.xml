@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CtlCatalogoDetalle" table="ctl_catalogo_detalle">
+    <indexes>
+      <index name="IDX_6D553C5CB77787D0" columns="id_catalogo"/>
+      <index name="IDX_6D553C5C735E702C" columns="id_usuario_mod"/>
+      <index name="IDX_6D553C5C7C22D51" columns="id_usuario_reg"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="descripcion" type="string" column="descripcion" length="100" nullable="true"/>
+    <field name="fechaHoraReg" type="datetime" column="fecha_hora_reg" nullable="true"/>
+    <field name="fechaHoraMod" type="datetime" column="fecha_hora_mod" nullable="true"/>
+    <many-to-one field="idUsuarioReg" target-entity="FosUserUser">
+      <join-columns>
+        <join-column name="id_usuario_reg" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idUsuarioMod" target-entity="FosUserUser">
+      <join-columns>
+        <join-column name="id_usuario_mod" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idCatalogo" target-entity="CtlCatalogo">
+      <join-columns>
+        <join-column name="id_catalogo" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

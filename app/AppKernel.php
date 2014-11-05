@@ -37,6 +37,7 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new Minsal\MaestrosBundle\MinsalMaestrosBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

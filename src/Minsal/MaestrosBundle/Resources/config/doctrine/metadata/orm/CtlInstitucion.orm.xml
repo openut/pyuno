@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CtlInstitucion" table="ctl_institucion">
+    <indexes>
+      <index name="idx_3123f0d4f57d32fd" columns="id_pais"/>
+      <index name="IDX_3123F0D4735E702C" columns="id_usuario_mod"/>
+      <index name="IDX_3123F0D47C22D51" columns="id_usuario_reg"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="nombre" type="string" column="nombre" length="150" nullable="false"/>
+    <field name="logo" type="string" column="logo" length="35" nullable="true"/>
+    <field name="rectora" type="string" column="rectora" length="10" nullable="true"/>
+    <field name="categoria" type="integer" column="categoria" nullable="true"/>
+    <field name="sigla" type="string" column="sigla" length="14" nullable="true"/>
+    <field name="fechaHoraReg" type="datetime" column="fecha_hora_reg" nullable="true"/>
+    <field name="fechaHoraMod" type="datetime" column="fecha_hora_mod" nullable="true"/>
+    <field name="estado" type="integer" column="estado" nullable="false"/>
+    <many-to-one field="idUsuarioReg" target-entity="FosUserUser">
+      <join-columns>
+        <join-column name="id_usuario_reg" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idUsuarioMod" target-entity="FosUserUser">
+      <join-columns>
+        <join-column name="id_usuario_mod" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idPais" target-entity="CtlPais">
+      <join-columns>
+        <join-column name="id_pais" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CtlProyectoMunicipio" table="ctl_proyecto_municipio">
+    <indexes>
+      <index name="idx_b99f01683f09ee2c" columns="id_proyecto"/>
+      <index name="idx_b99f01687ead49c7" columns="id_municipio"/>
+      <index name="IDX_B99F0168735E702C" columns="id_usuario_mod"/>
+      <index name="IDX_B99F01687C22D51" columns="id_usuario_reg"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+    </id>
+    <field name="fechaHoraReg" type="datetime" column="fecha_hora_reg" nullable="true"/>
+    <field name="fechaHoraMod" type="datetime" column="fecha_hora_mod" nullable="true"/>
+    <many-to-one field="idUsuarioReg" target-entity="FosUserUser">
+      <join-columns>
+        <join-column name="id_usuario_reg" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idUsuarioMod" target-entity="FosUserUser">
+      <join-columns>
+        <join-column name="id_usuario_mod" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idMunicipio" target-entity="CtlMunicipio">
+      <join-columns>
+        <join-column name="id_municipio" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idProyecto" target-entity="CtlProyecto">
+      <join-columns>
+        <join-column name="id_proyecto" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
